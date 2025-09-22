@@ -18,10 +18,10 @@ const CustomButton = ({
           src={image}
           alt={imgAlt || label}
           className="me-2"
-          style={{ height: 24, width: 24, objectFit: 'contain' }}
+          style={{ height: 24, width: 24, objectFit: 'cover' }}
         />
       )}
-      <Button color={color} onClick={onClick} className="" >
+      <Button color={color} onClick={onClick} className="" style={{color:"#fff",padding:0}}>
         {label}
       </Button>
     </div>

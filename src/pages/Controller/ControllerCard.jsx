@@ -1,13 +1,19 @@
-import React from 'react';
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import './ControllerCard.scss';
-import PropTypes from 'prop-types';
+import ControllerSwitch from "./switch/ControllerSwitch/ControllerSwitch"
+import Voltage from './Voltage/Voltage';
+import motionSensor from "../../assets/iotimages/controller/motion-sensor.png"
+import plumbing from "../../assets/iotimages/controller/plumbing.png"
+import sea from "../../assets/iotimages/controller/sea.png"
+import waterFilter from "../../assets/iotimages/controller/water-filter.png"
 
 const ControllerCard = ({
     userName = "Sachin Das",
     batteryLevel = 60,
-    powerStatus = "Power Failu...",
-    isOnline = true,
+    powerStatus = "Power Failure",
+    // isOnline = true,
     lastUpdate = "10-09-2025 | 19:00:31",
     lastUpdateRight = "21-08-2025 15:25:51",
     voltageData = {
@@ -22,6 +28,20 @@ const ControllerCard = ({
         multi: 0
     }
 }) => {
+
+    const [switchState, setSwitchState] = useState(false);
+
+    const handleSwitchToggle = (isOn) => {
+        console.log('Switch toggled:', isOn);
+        setSwitchState(isOn);
+    };
+
+    const truncateText = (text, maxLength) => {
+        console.log(text.length, maxLength);
+        if (text.length <= maxLength) return text;
+        return `${text.slice(0, maxLength)}...`;
+    }
+
     return (
         <div className="controller-card">
             {/* Header Section */}
@@ -34,7 +54,7 @@ const ControllerCard = ({
                             </svg>
                         </span>
                     </div>
-                    <span className="user-name">{userName}</span>
+                    <span className="user-name ">{truncateText(userName, 10)}</span>
                 </div>
 
                 <div className="status-info">
@@ -48,15 +68,21 @@ const ControllerCard = ({
                     </div>
 
                     <div className="power-status">
-                        <span className="power-text">{powerStatus}</span>
+                        <span  className="power-text">{truncateText(powerStatus, 8)}</span>
                     </div>
 
-                    <div className={`online-status ${isOnline ? 'online' : 'offline'}`}>
+                    <ControllerSwitch
+                        isOn={switchState}
+                        onToggle={handleSwitchToggle}
+                        size="medium"
+                    />
+
+                    {/* <div className={`online-status ${isOnline ? 'online' : 'offline'}`}>
                         <span className="status-text">{isOnline ? 'ON' : 'OFF'}</span>
                         <div className="status-toggle">
                             <div className={`toggle-switch ${isOnline ? 'active' : ''}`}></div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
@@ -70,7 +96,12 @@ const ControllerCard = ({
                     </div>
 
                     <div className="refresh-icon">
-                        <span>🔄</span>
+                        <span>
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3.71946 2.69418C5.18028 1.43106 7.08457 0.666992 9.16732 0.666992C13.7697 0.666992 17.5007 4.39795 17.5007 9.00033C17.5007 10.7804 16.9425 12.4302 15.9917 13.7842L13.334 9.00033H15.834C15.834 5.31843 12.8492 2.33366 9.16732 2.33366C7.3755 2.33366 5.74879 3.04055 4.55084 4.19068L3.71946 2.69418ZM14.6152 15.3065C13.1543 16.5696 11.2501 17.3337 9.16732 17.3337C4.56494 17.3337 0.833984 13.6027 0.833984 9.00033C0.833984 7.22021 1.39214 5.57046 2.34298 4.21653L5.00065 9.00033H2.50065C2.50065 12.6822 5.48542 15.667 9.16732 15.667C10.9592 15.667 12.5858 14.9601 13.7838 13.81L14.6152 15.3065Z" fill="black" />
+                            </svg>
+
+                        </span>
                     </div>
 
                     <div className="last-update">
@@ -81,50 +112,38 @@ const ControllerCard = ({
 
                 {/* Voltage Readings */}
                 <div className="voltage-section">
-                    <div className="voltage-item red">
-                        <div className="voltage-letter">R</div>
-                        <div className="voltage-info">
-                            <span className="voltage-value">{voltageData.R.voltage} V</span>
-                            <span className="current-value">{voltageData.R.current}A</span>
-                        </div>
-                    </div>
-
-                    <div className="voltage-item yellow">
-                        <div className="voltage-letter">Y</div>
-                        <div className="voltage-info">
-                            <span className="voltage-value">{voltageData.Y.voltage} V</span>
-                            <span className="current-value">{voltageData.Y.current}A</span>
-                        </div>
-                    </div>
-
-                    <div className="voltage-item blue">
-                        <div className="voltage-letter">B</div>
-                        <div className="voltage-info">
-                            <span className="voltage-value">{voltageData.B.voltage} V</span>
-                            <span className="current-value">{voltageData.B.current}A</span>
-                        </div>
-                    </div>
+                    <Voltage type="R" volts={voltageData.R.voltage} current={voltageData.R.current} />
+                    <Voltage type="Y" volts={voltageData.Y.voltage} current={voltageData.Y.current} />
+                    <Voltage type="B" volts={voltageData.B.voltage} current={voltageData.B.current} />
                 </div>
 
                 {/* Metrics Section */}
                 <div className="metrics-section">
                     <div className="metric-item">
-                        <span className="metric-icon">🪣</span>
+                        <span >
+                            <img src={waterFilter} alt="Motion Sensor Icon" className="metric-icon" />
+                        </span>
                         <span className="metric-label">Tank: {metrics.tank}</span>
                     </div>
 
                     <div className="metric-item">
-                        <span className="metric-icon">💧</span>
+                        <span>
+                            <img src={sea} alt="Plumbing Icon" className="metric-icon"  />
+                        </span>
                         <span className="metric-label">Flow Meter: {metrics.flowMeter}</span>
                     </div>
 
                     <div className="metric-item">
-                        <span className="metric-icon">🔧</span>
+                        <span >
+                            <img src={plumbing} alt=" Sea Icon" className="metric-icon" />
+                        </span>
                         <span className="metric-label">Valve: {metrics.valve}</span>
                     </div>
 
                     <div className="metric-item">
-                        <span className="metric-icon">📊</span>
+                        <span >
+                            <img src={motionSensor} alt="Water Filter Icon" className="metric-icon"  />
+                        </span>
                         <span className="metric-label">Multi: {metrics.multi}</span>
                     </div>
                 </div>
@@ -137,7 +156,7 @@ ControllerCard.propTypes = {
     userName: PropTypes.string,
     batteryLevel: PropTypes.number,
     powerStatus: PropTypes.string,
-    isOnline: PropTypes.bool,
+    // isOnline: PropTypes.bool,
     lastUpdate: PropTypes.string,
     lastUpdateRight: PropTypes.string,
     voltageData: PropTypes.object,

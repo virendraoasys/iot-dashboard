@@ -71,7 +71,7 @@ const SidebarData = [
   },
   {
     title: 'Groups',
-    href: '/apps/calendar',
+    href: '/groups',
     icon: <img src={GroupsIcon} alt="groups" width={16} />,
     id: 2.4,
     collapisble: false,

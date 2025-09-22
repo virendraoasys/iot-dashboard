@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
 import { Col, Row } from 'reactstrap';
-import { useNavigate } from 'react-router-dom';
 import CustomButton from '../Common/button/CustomButton';
 import plus from '../../assets/iotimages/plusIcon.png';
 import deleteicon from '../../assets/iotimages/deleteicon.png';
-import group from '../../assets/iotimages/userIcon.png';
+import editicon from "../../assets/iotimages/editIcon.png";
 import GlobalSearch from '../Common/GlobalSearch';
 import UserCard from '../Common/card/UserCard';
-import avatar from '../../assets/iotimages/defaultIcon.png';
-// import CustomModal from '../Common/modal/CustomModal';
-import AddDevice from './AddDevice';
+import AssignGroups from './AssignGroups';
 import AddGroup from './AddGroup';
-import AddUser from './AddUser';
+
+// import Group from './Group';
+// import Controller from './Controller';
+
 
 
 const addBTnStyle = {
@@ -26,7 +26,7 @@ const deleteBtnStyle = {
   borderRadius: '50px',
 };
 const deviceBTnStyle = {
-  background: '#E09110',
+  background: '#F94B55',
   padding: '5px 5px',
   borderRadius: '5px',
 };
@@ -36,19 +36,17 @@ const groupBtnStyle = {
   borderRadius: '5px',
 };
 
-const UserDetails = () => {
-  const navigate = useNavigate();
-  const [openAddDevice, setOpenAddDevice] = useState(false)
-  const [openAddGroup, setOpenAddGroup] = useState(false)
-  const [openAddUser, setOpenAddUser] = useState(false)
-
-  const handelUserDescription = (id) => {
-    navigate(`/user-details/${id}`);
-  };
+const Groups = () => {
+   const [openAssignGroup, setOpenAssignGroup] = useState(false);
+   const [openAddGroup, setOpenAddGroup] = useState(false);
   const options = [
     { value: 'motor', label: 'Motor' },
     { value: 'power', label: 'Power' },
   ];
+//     const tabs = [
+//     { key: 'group', label: 'Group', component: <Group /> },
+//     { key: 'controller', label: 'Controller', component: <Controller /> },
+//   ];
   const userData = [
     {
       id: 1,
@@ -115,20 +113,17 @@ const UserDetails = () => {
       created_at: '17/02/2025',
     },
   ];
-  const handelAddDevice = () =>{
-    setOpenAddDevice(!openAddDevice)
+  const handelAssignGroup =()=>{
+    setOpenAssignGroup(!openAssignGroup)
   }
-  const handelAddGroup = () =>{
+  const handelAddGroup =()=>{
     setOpenAddGroup(!openAddGroup)
   }
-  const handleAddUser = () =>{
-    setOpenAddUser(!openAddUser)
-  }
   return (
-    <div className='user-details-page'>
+    <div className='user-description-page'>
       <div className="dashboard-page ">
         <div className="d-flex justify-content-between align-items-center">
-          <div className="page-heading">User Details</div>
+          <div className="page-heading">All Groups</div>
           <div className="select-sec d-flex gap-2">
             <Select options={options} className="select-field" />
             <Select options={options} className="select-field" />
@@ -147,14 +142,14 @@ const UserDetails = () => {
             <div className="d-flex justify-content-end gap-2">
               <CustomButton
                 image={plus}
-                label="Add User"
+                label="Add Group"
                 color="transparent"
                 style={addBTnStyle}
-                onClick={handleAddUser}
+                onClick={handelAddGroup}
               />
               <CustomButton
                 image={deleteicon}
-                label="Delete User"
+                label="Delete Group"
                 color="transparent"
                 style={deleteBtnStyle}
                 // onClick={handleAddUser}
@@ -169,30 +164,30 @@ const UserDetails = () => {
             return (
               <div key={++i}>
                 <UserCard
-                  name={ele?.name}
-                  avatar={avatar}
+                  
                   headerRight={
                     <>
+                     
                       <CustomButton
-                        image={plus}
-                        label="Device"
-                        color="transparent"
-                        style={deviceBTnStyle}
-                        onClick={handelAddDevice}
-                      />
-                      <CustomButton
-                        image={group}
-                        label="Group"
+                        image={editicon}
+                        label="Assign Group"
                         color="transparent"
                         style={groupBtnStyle}
-                        onClick={handelAddGroup}
+                        onClick={handelAssignGroup}
+                      />
+                       <CustomButton
+                        image={deleteicon}
+                        label="Delete"
+                        color="transparent"
+                        style={deviceBTnStyle}
+                        onClick={() => console.log('Add Device')}
                       />
                     </>
                   }
                 >
                     <div className='card-user-details' 
-                        style={{ cursor: 'pointer' }}
-                        onClick={() => handelUserDescription(ele?.id)}
+                        // style={{ cursor: 'pointer' }}
+                        // onClick={() => handelUserDescription(ele?.id)}
                     >
                         <div>
                             <p className="mb-0 label">Name</p>
@@ -221,28 +216,18 @@ const UserDetails = () => {
             );
           })}
         </div>
+          
+        
       </div>
-      {/* {openAddDevice && (
-        <CustomModal 
-            toggle={handelAddDevice}
-            isOpen={openAddDevice}
-        >
-
-      )} */}
-      <AddDevice 
-        toggle={handelAddDevice}
-        isOpen={openAddDevice}
+      <AssignGroups 
+        isOpen={openAssignGroup}
+        toggle={handelAssignGroup}
       />
       <AddGroup 
-        toggle={handelAddGroup}
         isOpen={openAddGroup}
-      />
-      <AddUser
-        toggle={handleAddUser}
-        isOpen={openAddUser}
+        toggle={handelAddGroup}
       />
     </div>
-
   );
 };
-export default UserDetails;
+export default Groups;

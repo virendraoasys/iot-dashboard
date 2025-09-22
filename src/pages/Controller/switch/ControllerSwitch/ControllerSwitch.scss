@@ -1,0 +1,126 @@
+.controller-switch {
+  display: inline-block;
+  
+  .switch-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    &.disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+  }
+  
+  .switch-track {
+    padding:3px;
+    position: relative;
+    color: white;
+    width: 55px;
+    height: 29px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+  
+  .switch-thumb {
+    position: absolute;
+    top: 4px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .switch-label {
+    font-weight: 600;
+    font-size: 14px;
+    transition: color 0.3s ease;
+  }
+  
+  // OFF state
+  .switch-container.off {
+    .switch-track {
+      background: #dc3545;
+    }
+    
+    .switch-thumb {
+      left: 2px;
+    }
+    
+    .switch-label {
+      color: #dc3545;
+    }
+  }
+  
+  // ON state
+  .switch-container.on {
+    .switch-track {
+      background: #28a745;
+    }
+    
+    .switch-thumb {
+      left: 28px;
+    }
+    
+    .switch-label {
+      color: #28a745;
+    }
+  }
+  
+  // Hover effects
+  .switch-container:not(.disabled):hover {
+    .switch-track {
+      transform: scale(1.05);
+    }
+  }
+  
+  // Size variations
+  &.small {
+    .switch-track {
+      width: 36px;
+      height: 18px;
+      border-radius: 9px;
+    }
+    
+    .switch-thumb {
+      width: 14px;
+      height: 14px;
+      top: 2px;
+    }
+    
+    .switch-container.on .switch-thumb {
+      left: 20px;
+    }
+    
+    .switch-label {
+      font-size: 12px;
+    }
+  }
+  
+  &.large {
+    .switch-track {
+      width: 64px;
+      height: 32px;
+      border-radius: 16px;
+    }
+    
+    .switch-thumb {
+      width: 26px;
+      height: 26px;
+      top: 3px;
+    }
+    
+    .switch-container.on .switch-thumb {
+      left: 35px;
+    }
+    
+    .switch-label {
+      font-size: 16px;
+    }
+  }
+}

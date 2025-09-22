@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
 import Loadable from '../layouts/loader/Loadable';
+
 // import Login from '../pages/Auth/Login';
 /****Layouts*****/
 
@@ -10,6 +11,8 @@ const BlankLayout = Loadable(lazy(() => import('../layouts/BlankLayout')));
 const Dashboard = Loadable(lazy(() => import('../pages/Dashboard/Dashboard')));
 const Controller = Loadable(lazy(() => import('../pages/Controller')));
 const UserDetails = Loadable(lazy(() => import('../pages/useDetails/UserDetails')));
+const Groups = Loadable(lazy(() => import('../pages/groups/Groups')));
+const UserDescription = Loadable(lazy(() => import('../pages/useDetails/UserDescription')));
 
 // const Minimal = Loadable(lazy(() => import('../views/dashboards/Minimal')));
 // const Analytical = Loadable(lazy(() => import('../views/dashboards/Analytical')));
@@ -118,6 +121,8 @@ const ThemeRoutes = [
       { path: '/dashboard', name: 'dashboard', exact: true, element: <Dashboard /> },
       { path: '/controller', name:'controller', exact: true, element: <Controller /> },
       { path: '/user-details', name:'userDetails', exact: true, element: <UserDetails /> },
+      { path: '/user-details/:id', name:'userDescription', exact: true, element: <UserDescription /> },
+      { path: '/groups', name:'groups', exact: true, element: <Groups /> },
       // { path: '/dashboards/minimal', name: 'Minimal', exact: true, element: <Minimal /> },
       // { path: '/dashboards/analytical', name: 'Analytical', exact: true, element: <Analytical /> },
       // { path: '/dashboards/demographical', name: 'Demographical', exact: true, element: <Demographical /> },

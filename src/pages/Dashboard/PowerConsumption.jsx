@@ -14,8 +14,8 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import waterTank from '../../assets/iotimages/water-tank.png';
 import vector from '../../assets/iotimages/vector-1.png';
+import powerconsumption from "../../assets/iotimages/power-consuption.png"
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -207,7 +207,7 @@ const PowerConsumption = () => {
         <Col md={8}>
           <div className="d-flex left-side">
             <div className="img-sec">
-              <img src={waterTank} alt="Sprinkler" className="img-fluid rounded" />
+              <img src={powerconsumption} alt="Sprinkler" className="img-fluid rounded" />
             </div>
 
             <Card className="form-sec mt-2">
@@ -360,7 +360,7 @@ const PowerConsumption = () => {
                         options={chartOptions}
                         series={chartData.series}
                         type="area"
-                        height={200}
+                        height={195}
                       />
                     </Col>
                   </Row>

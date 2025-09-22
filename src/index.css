@@ -15,6 +15,7 @@
     --card-head: #61656C;
     --card-count: #203955;
     --button-background: #E7EBFE;
+    --card-header: #EAE8F0;
 }
 
 .row {
@@ -40,6 +41,23 @@
 .btn-group>.btn.active {
     z-index: 0 !important;
 }
+.global-search {
+    input{
+        min-height: 38px;
+        border-radius: 10px !important;
+        border: 1px solid var(--white-gray) !important;
+    }
+}
+.label{
+    color: var(--card-head);
+    font-size: 12px;
+    font-weight: 400;
+}
+.value{
+    color: var(--page-name);
+    font-size: 15px;
+    font-weight: 500;       
+}
 
 /* a{
     color: var(--blue) !important;
@@ -56,6 +74,13 @@
     color: var(--black) !important;
     border-radius: 10px !important;
     border: 1px solid var(--white-gray) !important;
+}
+.cancel-btn {
+    background-color: var(--light-gray) !important;
+    color: var(--black) !important;
+    border-radius: 5px !important;
+    border: 1px solid var(--white-gray) !important;
+    height: 35px;
 }
 
 .iot-login-box {
@@ -174,7 +199,7 @@
 .select-field {
     min-width: 150px;
     border-radius: 10px !important;
-    border: 1px solid var(--white-gray) !important;
+    /* border: 1px solid var(--white-gray) !important; */
 
     .css-yk16xz-control {
         border-radius: 10px !important;
@@ -403,4 +428,138 @@
     color: var(--card-head);
     font-size: 14px;
     font-weight: 400;
+}
+
+/* user Datails */
+.user-card{
+    border-radius: 10px !important;
+    border: 1px solid var(--white-gray) !important;
+    margin-bottom: 0 !important;
+    .user-card-header{
+        background-color: var(--card-header);
+        border-radius: 10px 10px 0 0 !important;
+        padding: 11px 6px;
+        .avatar-sec{
+            border: 1px solid var(--white-gray) !important;
+            background: var(--white);
+            border-radius: 50px;
+            padding: 5px;
+            .header-name{
+                font-size: 16px;
+                font-weight: 500;
+                color: var(--page-name);
+            }
+        }
+        
+    }
+}
+.user-details-page{
+    .page-user-cards{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 15px;
+        .card-user-details{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 10px;
+        }
+    }
+}
+.user-description-page{
+    .card-user-details-page{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 10px;
+        }
+}
+.controller-card {
+    .controller-tab-card{
+        /* border: 1px solid var(--white-gray) !important; */
+        margin-bottom: 0 !important;
+    }
+}
+.user-description-tabs-content{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+}
+.user-description-page{
+    .page-user-cards{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 15px;
+        .card-user-details{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    }
+    
+}
+.controller-page{
+    .page-heading {
+        color: var(--page-name);
+        font-weight: 500px;
+        font-size: 24px;
+    }
+    .controller-cards{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 15px;
+        .card-user-details{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 10px;
+        }
+    }
+}
+.user-description-page{
+    .card-user-details-page{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 10px;
+        }
+}
+.controller-card {
+    .controller-tab-card{
+        /* border: 1px solid var(--white-gray) !important; */
+        margin-bottom: 0 !important;
+    }
+}
+.user-description-tabs-content{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+}
+.user-description-page{
+    .page-user-cards{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 15px;
+        .card-user-details{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    }
+    
+}
+
+.controller-page{
+    .page-heading {
+        color: var(--page-name);
+        font-weight: 500px;
+        font-size: 24px;
+    }
+    .controller-cards{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 25px;
+    }
+}
+.custom-modal-header{
+    background: var(--card-header);
+    h5{
+        font-weight: 500;
+        font-size: 20px;
+        color: var(--page-name);
+    }
 }
