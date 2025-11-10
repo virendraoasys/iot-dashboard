@@ -8,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import loginSideImg from "../../assets/iotimages/login-side.png"
 import loginLogo from "../../assets/iotnewimages/iot-logo-login.png"
 import cm from "../../assets/iotnewimages/iot-cm.png";
+import pm from "../../assets/iotnewimages/iot-pm.png";
 import leftArrow from "../../assets/iotnewimages/left-arrow.png"
 // import { ReactComponent as LeftBg } from '../../assets/images/bg/login-bgleft.svg';
 // import { ReactComponent as RightBg } from '../../assets/images/bg/login-bg-right.svg';
@@ -32,11 +33,18 @@ const Login = () => {
       {/* <LeftBg className="position-absolute left bottom-0" />
       <RightBg className="position-absolute end-0 top" /> */}
       <div className='auth-header d-flex justify-content-between align-items-center'>
-        <div className='auth-logo'>
+        <div className='auth-logo' style={{paddingBottom:"15px"}}>
             <img src={loginLogo} alt='Auth-logo' />
+        </div>
+        <div className='d-flex gap-2'>
+       
+        <div className='auth-logo'>
+            <img src={pm} alt='Auth-logo' />
         </div>
         <div className='auth-logo'>
             <img src={cm} alt='Auth-logo' />
+        </div>
+           
         </div>
         {/* <div className="header-btn ">
             <Button>Back To Website</Button>
