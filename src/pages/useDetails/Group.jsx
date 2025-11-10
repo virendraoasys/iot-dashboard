@@ -3,25 +3,23 @@ import { Card, CardBody } from 'reactstrap';
 import UserCard from '../Common/card/UserCard';
 import CustomButton from '../Common/button/CustomButton';
 import editIcon from '../../assets/iotimages/editIcon.png';
-import deleteIcon from '../../assets/iotimages/deleteicon.png';
+import deleteIcon from '../../assets/iotimages/delete-pic.png';
 
 const deviceBTnStyle = {
   background: '#F94B55',
-  padding: '5px 5px',
   borderRadius: '5px',
 };
 const groupBtnStyle = {
   background: '#293DA1',
-  padding: '5px 5px',
   borderRadius: '5px',
 };
 
 const Groups = () => {
   return (
-    <div className="controller-card">
-      <Card className="controller-tab-card">
+    <div className="new-controller-card">
+      <Card className="new-controller-tab-card">
         <CardBody>
-          <div className='user-description-tabs-content'>
+          <div className="user-description-tabs-content">
             <UserCard
               headerRight={
                 <>
@@ -42,22 +40,20 @@ const Groups = () => {
                 </>
               }
             >
-              
-                    <div className='card-user-details-page'>
-                        <div>
-                            <p className="mb-0 label">Controller ID</p>
-                            <p className="mb-0 value">861826076461652</p>
-                        </div>
-                        <div>
-                            <p className="mb-0 label">Access Type</p>
-                            <p className="mb-0 value">Operator</p>
-                        </div>
-                        <div>
-                            <p className="mb-0 label">Controller Name</p>
-                            <p className="mb-0 value">S.Maliguda6</p>
-                        </div>
-                    </div>
-                
+              <div className="card-user-details-page">
+                <div>
+                  <p className="mb-0 label">Controller ID</p>
+                  <p className="mb-0 value">861826076461652</p>
+                </div>
+                <div>
+                  <p className="mb-0 label">Access Type</p>
+                  <p className="mb-0 value">Operator</p>
+                </div>
+                <div>
+                  <p className="mb-0 label">Controller Name</p>
+                  <p className="mb-0 value">S.Maliguda6</p>
+                </div>
+              </div>
             </UserCard>
           </div>
         </CardBody>

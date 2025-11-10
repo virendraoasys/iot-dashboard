@@ -1,4 +1,5 @@
 import {useState} from "react"
+import { useNavigate } from "react-router-dom";
 // import ControllerModal from './modal/ControllerModal';
 import DeleteAlert from './modal/Delete/DeleteAlert';
 import SendEmail from "./Email/Email";
@@ -12,6 +13,7 @@ import filterIconLarge from '../../assets/iotimages/filterIconLarge.png';
 
  const data = [
         {
+            id:1,
             userName: "Sachin Das A",
             batteryLevel: 60,
             powerStatus: "Power Failure failure",
@@ -31,6 +33,7 @@ import filterIconLarge from '../../assets/iotimages/filterIconLarge.png';
             }
         },
         {
+            id:2,
             userName: "Sachin Das B",
             batteryLevel: 60,
             powerStatus: "Power Failure",
@@ -50,6 +53,7 @@ import filterIconLarge from '../../assets/iotimages/filterIconLarge.png';
             }
         },
         {
+            id:3,
             userName: "Sachin Das C",
             batteryLevel: 60,
             powerStatus: "Power Failure",
@@ -69,6 +73,7 @@ import filterIconLarge from '../../assets/iotimages/filterIconLarge.png';
             }
         },
         {
+            id:4,
             userName: "Sachin Das D",
             batteryLevel: 60,
             powerStatus: "Power Failure",
@@ -88,6 +93,7 @@ import filterIconLarge from '../../assets/iotimages/filterIconLarge.png';
             }
         },
         {
+            id:5,
             userName: "Sachin Das E",
             batteryLevel: 60,
             powerStatus: "Power Failure",
@@ -107,6 +113,7 @@ import filterIconLarge from '../../assets/iotimages/filterIconLarge.png';
             }
         },
         {
+            id:6,
             userName: "Sachin Das F",
             batteryLevel: 60,
             powerStatus: "Power Failure ",
@@ -128,7 +135,7 @@ import filterIconLarge from '../../assets/iotimages/filterIconLarge.png';
     ]
 
 const Controller = () => {
-
+  const navigate = useNavigate()
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [itemToDelete, setItemToDelete] = useState(null);
@@ -171,37 +178,39 @@ const handleDeleteClick = (item) => {
 
     const addBTnStyle = {
         background: '#2C67BA',
-        padding: '5px 12px',
+        // padding: '5px 12px',
         borderRadius: '50px',
     };
     const deleteBtnStyle = {
         background: '#F3494C',
-        padding: '5px 12px',
+        // padding: '5px 12px',
         borderRadius: '50px',
     };
 
     const EmailBtnStyle = {
         background: "#1E1E1E",
-        padding: '5px 12px',
+        // padding: '5px 12px',
         borderRadius: '50px',
     };
 
     const FilterBtnStyle = {
-        background: "#FFFFFF",
-        padding: '5px 12px',
+        background: "#d1cdcdff",
+        // padding: '5px 12px',
         borderRadius: '50px',
         borderWidth: '10px',
     };
-
+    const handelMoroPumpDetails=(id)=>{
+        navigate(`/motor-details/${id}`);
+    }
 
     return (
         <div className="controller-page">
             <div className="d-flex justify-content-between align-items-center">
-                <div className="page-heading">Controller</div>
+                <div className="controller-page-header">Motor Pump <span>12</span></div>
                 <div className="select-sec d-flex gap-2">
                     <CustomButton
                         image={filterIconLarge}
-                        label="Filter"
+                        label=""
                         color="transparent"
                         style={FilterBtnStyle}
                         // onClick={() => handleDeleteClick({ id: 1, name: 'Controller 1' })}
@@ -249,7 +258,7 @@ const handleDeleteClick = (item) => {
                 />
                 <div className="controller-cards">
                     {data?.map((e) => (
-                        <div key={e.userName} className="">
+                        <div key={e.userName} className="" onClick={()=>handelMoroPumpDetails(e.id)}>
                             <ControllerCard
                                 userName={e.userName}
                                 batteryLevel={e.batteryLevel}

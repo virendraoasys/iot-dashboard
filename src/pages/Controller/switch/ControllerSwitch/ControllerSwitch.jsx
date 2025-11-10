@@ -10,7 +10,8 @@ const ControllerSwitch = ({
 }) => {
   const [internalState, setInternalState] = useState(isOn);
 
-  const handleToggle = () => {
+  const handleToggle = (e) => {
+    e.stopPropagation();
     if (disabled) return;
     
     const newState = !internalState;

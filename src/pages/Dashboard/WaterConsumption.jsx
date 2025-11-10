@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Container, Row, Col, Card, CardBody, Button, FormGroup, Label } from 'reactstrap';
+import React from 'react';
+import { Container, Row, Col, Button, FormGroup, Label } from 'reactstrap';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import ReactApexChart from 'react-apexcharts';
+// import ReactApexChart from 'react-apexcharts';
 import * as Yup from 'yup';
 // import { Line } from 'react-chartjs-2';
 import {
@@ -14,16 +14,17 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import waterTank from '../../assets/iotimages/water-tank.png';
-import vector from '../../assets/iotimages/vector-1.png';
+// import waterTank from '../../assets/iotimages/water-tank.png';
+// import vector from '../../assets/iotimages/vector-1.png';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 // Validation Schema
 const WaterConsumptionSchema = Yup.object().shape({
-  fromDate: Yup.date().required('Required'),
-  toDate: Yup.date().required('Required'),
-  period: Yup.string().required('Required'),
+  fromDate: Yup.date().required('From date is required'),
+  fromPeriod: Yup.string().required('Select AM or PM'),
+  toDate: Yup.date().required('To date is required'),
+  toPeriod: Yup.string().required('Select AM or PM'),
 });
 
 const WaterConsumption = () => {
@@ -45,271 +46,276 @@ const WaterConsumption = () => {
   //   scales: { y: { beginAtZero: true } },
   // };
 
-  const [timeRange, setTimeRange] = useState('monthly');
+  // const [timeRange, setTimeRange] = useState('monthly');
 
   // Chart data configuration
-  const getChartData = () => {
-    switch (timeRange) {
-      case 'yearly':
-        return {
-          series: [
-            {
-              name: 'Power Consumption',
-              data: [1200, 1100, 1300, 1250, 1400, 1350, 1500, 1450, 1600, 1550, 1700, 1650],
-            },
-          ],
-          options: {
-            xaxis: {
-              categories: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-            },
-          },
-        };
+  // const getChartData = () => {
+  //   switch (timeRange) {
+  //     case 'yearly':
+  //       return {
+  //         series: [
+  //           {
+  //             name: 'Power Consumption',
+  //             data: [1200, 1100, 1300, 1250, 1400, 1350, 1500, 1450, 1600, 1550, 1700, 1650],
+  //           },
+  //         ],
+  //         options: {
+  //           xaxis: {
+  //             categories: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+  //           },
+  //         },
+  //       };
 
-      case 'monthly':
-        return {
-          series: [
-            {
-              name: 'Power Consumption',
-              data: [40, 45, 42, 48, 43, 47, 50, 45, 52, 48, 55, 50],
-            },
-          ],
-          options: {
-            xaxis: {
-              // categories: Array.from({length: 30}, (_, i) => i + 1)
-              categories: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-            },
-          },
-        };
+  //     case 'monthly':
+  //       return {
+  //         series: [
+  //           {
+  //             name: 'Power Consumption',
+  //             data: [40, 45, 42, 48, 43, 47, 50, 45, 52, 48, 55, 50],
+  //           },
+  //         ],
+  //         options: {
+  //           xaxis: {
+  //             // categories: Array.from({length: 30}, (_, i) => i + 1)
+  //             categories: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+  //           },
+  //         },
+  //       };
 
-      case 'weekly':
-        return {
-          series: [
-            {
-              name: 'Power Consumption',
-              data: [65, 70, 68, 72, 75, 78, 80],
-            },
-          ],
-          options: {
-            xaxis: {
-              categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-            },
-          },
-        };
+  //     case 'weekly':
+  //       return {
+  //         series: [
+  //           {
+  //             name: 'Power Consumption',
+  //             data: [65, 70, 68, 72, 75, 78, 80],
+  //           },
+  //         ],
+  //         options: {
+  //           xaxis: {
+  //             categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+  //           },
+  //         },
+  //       };
 
-      case 'daily':
-        return {
-          series: [
-            {
-              name: 'Power Consumption',
-              data: [
-                2.5, 2.8, 3.0, 2.7, 3.2, 3.5, 3.8, 4.0, 4.2, 4.5, 4.3, 4.0, 3.8, 3.5, 3.2, 3.0, 2.8,
-                2.5, 2.2, 2.0, 1.8, 1.5, 1.2, 1.0,
-              ],
-            },
-          ],
-          options: {
-            xaxis: {
-              categories: Array.from({ length: 24 }, (_, i) => `${i}:00`),
-            },
-          },
-        };
+  //     case 'daily':
+  //       return {
+  //         series: [
+  //           {
+  //             name: 'Power Consumption',
+  //             data: [
+  //               2.5, 2.8, 3.0, 2.7, 3.2, 3.5, 3.8, 4.0, 4.2, 4.5, 4.3, 4.0, 3.8, 3.5, 3.2, 3.0, 2.8,
+  //               2.5, 2.2, 2.0, 1.8, 1.5, 1.2, 1.0,
+  //             ],
+  //           },
+  //         ],
+  //         options: {
+  //           xaxis: {
+  //             categories: Array.from({ length: 24 }, (_, i) => `${i}:00`),
+  //           },
+  //         },
+  //       };
 
-      default:
-        return {
-          series: [],
-          options: {},
-        };
-    }
-  };
+  //     default:
+  //       return {
+  //         series: [],
+  //         options: {},
+  //       };
+  //   }
+  // };
 
-  const chartData = getChartData();
+  // const chartData = getChartData();
 
-  const chartOptions = {
-    chart: {
-      type: 'area',
-      height: 200,
-      toolbar: {
-        show: true,
-        tools: {
-          download: true,
-          selection: false,
-          zoom: false,
-          zoomin: false,
-          zoomout: false,
-          pan: false,
-          reset: false,
-        },
-      },
-    },
-    dataLabels: {
-      enabled: false,
-    },
-    stroke: {
-      curve: 'smooth',
-      width: 2,
-    },
-    fill: {
-      type: 'gradient',
-      gradient: {
-        shadeIntensity: 1,
-        opacityFrom: 0.7,
-        opacityTo: 0.3,
-        stops: [0, 90, 100],
-      },
-    },
-    colors: ['#176BA0'],
-    xaxis: {
-      ...chartData.options.xaxis,
-      // title: {
-      //   text:
-      //     timeRange === 'daily'
-      //       ? 'Time'
-      //       : timeRange === 'weekly'
-      //       ? 'Days'
-      //       : timeRange === 'monthly'
-      //       ? 'Days'
-      //       : 'Months',
-      // },
-    },
-    yaxis: {
-      // title: {
-      //   text: 'Power (kWh)',
-      // },
-      // labels: {
-      //   formatter(value) {
-      //     return value.toFixed(0);
-      //   },
-      // },
-    },
-    tooltip: {
-      y: {
-        formatter(value) {
-          return value.toFixed(0);
-        },
-      },
-    },
-    grid: {
-      borderColor: '#f1f1f1',
-    },
-  };
+  // const chartOptions = {
+  //   chart: {
+  //     type: 'area',
+  //     height: 200,
+  //     toolbar: {
+  //       show: true,
+  //       tools: {
+  //         download: true,
+  //         selection: false,
+  //         zoom: false,
+  //         zoomin: false,
+  //         zoomout: false,
+  //         pan: false,
+  //         reset: false,
+  //       },
+  //     },
+  //   },
+  //   dataLabels: {
+  //     enabled: false,
+  //   },
+  //   stroke: {
+  //     curve: 'smooth',
+  //     width: 2,
+  //   },
+  //   fill: {
+  //     type: 'gradient',
+  //     gradient: {
+  //       shadeIntensity: 1,
+  //       opacityFrom: 0.7,
+  //       opacityTo: 0.3,
+  //       stops: [0, 90, 100],
+  //     },
+  //   },
+  //   colors: ['#176BA0'],
+  //   xaxis: {
+  //     ...chartData.options.xaxis,
+  //     // title: {
+  //     //   text:
+  //     //     timeRange === 'daily'
+  //     //       ? 'Time'
+  //     //       : timeRange === 'weekly'
+  //     //       ? 'Days'
+  //     //       : timeRange === 'monthly'
+  //     //       ? 'Days'
+  //     //       : 'Months',
+  //     // },
+  //   },
+  //   yaxis: {
+  //     // title: {
+  //     //   text: 'Power (kWh)',
+  //     // },
+  //     // labels: {
+  //     //   formatter(value) {
+  //     //     return value.toFixed(0);
+  //     //   },
+  //     // },
+  //   },
+  //   tooltip: {
+  //     y: {
+  //       formatter(value) {
+  //         return value.toFixed(0);
+  //       },
+  //     },
+  //   },
+  //   grid: {
+  //     borderColor: '#f1f1f1',
+  //   },
+  // };
 
-  const timeRangeButtons = [
-    { key: 'yearly', label: 'Yearly' },
-    { key: 'monthly', label: 'Monthly' },
-    { key: 'weekly', label: 'Weekly' },
-    { key: 'daily', label: 'Daily' },
-  ];
+  // const timeRangeButtons = [
+  //   { key: 'yearly', label: 'Yearly' },
+  //   { key: 'monthly', label: 'Monthly' },
+  //   { key: 'weekly', label: 'Weekly' },
+  //   { key: 'daily', label: 'Daily' },
+  // ];
 
   return (
     <Container className="power-consumption-sec">
       <Row className="g-3">
         {/* Left Image */}
-        <Col md={8}>
+        <Col lg={12}>
           <div className="d-flex left-side">
-            <div className="img-sec">
+            {/* <div className="img-sec">
               <img src={waterTank} alt="Sprinkler" className="img-fluid rounded" />
+            </div> */}
+
+            <div className="form-sec mt-2">
+              {/* <h5>Water Consumption Details</h5> */}
+
+              <Formik
+                initialValues={{
+                  fromDate: '',
+                  fromPeriod: '',
+                  toDate: '',
+                  toPeriod: '',
+                }}
+                validationSchema={WaterConsumptionSchema}
+                onSubmit={(values) => {
+                  console.log('Form values:', values);
+                }}
+              >
+                {() => (
+                  <Form>
+                    {/* From Date */}
+                    <FormGroup>
+                      <Label htmlFor="fromDate">From</Label>
+                      <Field type="date" id="fromDate" name="fromDate" className="form-control" />
+                      <ErrorMessage name="fromDate" component="div" className="text-danger" />
+                    </FormGroup>
+
+                    {/* From Period */}
+                    <FormGroup tag="fieldset">
+                      <div className="d-flex gap-3">
+                        <div className="form-check">
+                          <Field
+                            type="radio"
+                            id="fromAM"
+                            name="fromPeriod"
+                            value="AM"
+                            className="form-check-input"
+                          />
+                          <Label className="form-check-label" htmlFor="fromAM">
+                            AM
+                          </Label>
+                        </div>
+                        <div className="form-check">
+                          <Field
+                            type="radio"
+                            id="fromPM"
+                            name="fromPeriod"
+                            value="PM"
+                            className="form-check-input"
+                          />
+                          <Label className="form-check-label" htmlFor="fromPM">
+                            PM
+                          </Label>
+                        </div>
+                      </div>
+                      <ErrorMessage name="fromPeriod" component="div" className="text-danger" />
+                    </FormGroup>
+
+                    {/* To Date */}
+                    <FormGroup>
+                      <Label htmlFor="toDate">To</Label>
+                      <Field type="date" id="toDate" name="toDate" className="form-control" />
+                      <ErrorMessage name="toDate" component="div" className="text-danger" />
+                    </FormGroup>
+
+                    {/* To Period */}
+                    <FormGroup tag="fieldset">
+                      <div className="d-flex gap-3">
+                        <div className="form-check">
+                          <Field
+                            type="radio"
+                            id="toAM"
+                            name="toPeriod"
+                            value="AM"
+                            className="form-check-input"
+                          />
+                          <Label className="form-check-label" htmlFor="toAM">
+                            AM
+                          </Label>
+                        </div>
+                        <div className="form-check">
+                          <Field
+                            type="radio"
+                            id="toPM"
+                            name="toPeriod"
+                            value="PM"
+                            className="form-check-input"
+                          />
+                          <Label className="form-check-label" htmlFor="toPM">
+                            PM
+                          </Label>
+                        </div>
+                      </div>
+                      <ErrorMessage name="toPeriod" component="div" className="text-danger" />
+                    </FormGroup>
+
+                    <Button color="" block type="submit" className="login-btn">
+                      Submit
+                    </Button>
+                  </Form>
+                )}
+              </Formik>
             </div>
-
-            <Card className="form-sec mt-2">
-              <CardBody>
-                <h5>Water Consumption Details</h5>
-
-                <Formik
-                  initialValues={{ fromDate: '', toDate: '', period: '' }}
-                  validationSchema={WaterConsumptionSchema}
-                  onSubmit={(values) => {
-                    console.log(values);
-                    // alert(JSON.stringify(values, null, 2));
-                  }}
-                >
-                  {() => (
-                    <Form>
-                      <FormGroup>
-                        <Label htmlFor="fromDate">From</Label>
-                        <Field type="date" id="fromDate" name="fromDate" className="form-control" />
-                        <ErrorMessage name="fromDate" component="div" className="text-danger" />
-                      </FormGroup>
-                      <FormGroup tag="fieldset">
-                        {/* <Label>Period</Label> */}
-                        <div className="d-flex gap-3">
-                          <div className="form-check">
-                            <Field
-                              type="radio"
-                              id="periodAM"
-                              name="period"
-                              value="AM"
-                              className="form-check-input"
-                            />
-                            <Label className="form-check-label" htmlFor="periodAM">
-                              AM
-                            </Label>
-                          </div>
-                          <div className="form-check">
-                            <Field
-                              type="radio"
-                              id="periodPM"
-                              name="period"
-                              value="PM"
-                              className="form-check-input"
-                            />
-                            <Label className="form-check-label" htmlFor="periodPM">
-                              PM
-                            </Label>
-                          </div>
-                        </div>
-                        <ErrorMessage name="period" component="div" className="text-danger" />
-                      </FormGroup>
-
-                      <FormGroup>
-                        <Label htmlFor="toDate">To</Label>
-                        <Field type="date" id="toDate" name="toDate" className="form-control" />
-                        <ErrorMessage name="toDate" component="div" className="text-danger" />
-                      </FormGroup>
-
-                      <FormGroup tag="fieldset">
-                        {/* <Label>Period</Label> */}
-                        <div className="d-flex gap-3">
-                          <div className="form-check">
-                            <Field
-                              type="radio"
-                              id="periodAM"
-                              name="period"
-                              value="AM"
-                              className="form-check-input"
-                            />
-                            <Label className="form-check-label" htmlFor="periodAM">
-                              AM
-                            </Label>
-                          </div>
-                          <div className="form-check">
-                            <Field
-                              type="radio"
-                              id="periodPM"
-                              name="period"
-                              value="PM"
-                              className="form-check-input"
-                            />
-                            <Label className="form-check-label" htmlFor="periodPM">
-                              PM
-                            </Label>
-                          </div>
-                        </div>
-                        <ErrorMessage name="period" component="div" className="text-danger" />
-                      </FormGroup>
-
-                      <Button color="" block type="submit" className="login-btn">
-                        Submit
-                      </Button>
-                    </Form>
-                  )}
-                </Formik>
-              </CardBody>
-            </Card>
           </div>
         </Col>
 
         {/* Right Stats and Chart */}
-        <Col md={4} className="ps-2">
+        {/* <Col md={4} className="ps-2">
           <Row className="mb-2 power-consumption-small-card-sec gap-2">
             {['Total Consumption', 'Average Daily', 'Peak Consumption'].map((label) => (
               <Col key={label}>
@@ -331,13 +337,11 @@ const WaterConsumption = () => {
             <Card>
               <CardBody>
                 <h5>Water Consumption</h5>
-                {/* <Line data={chartData} options={chartOptions} /> */}
+            
 
                 <div className="">
                   <Row className="align-items-center mb-3">
-                    {/* <Col md={6}>
-          <h5 className="mb-0">Power Consumption</h5>
-        </Col> */}
+                 
                     <Col md={12} className="chat-btn-group">
                       <div className="btn-group" role="group">
                         {timeRangeButtons.map((button) => (
@@ -358,9 +362,7 @@ const WaterConsumption = () => {
 
                   <Row>
                     <Col>
-                      {/* <div className="text-end mb-2">
-            <span className="text-muted">Jun 2025</span>
-          </div> */}
+                   
                       <ReactApexChart
                         options={chartOptions}
                         series={chartData.series}
@@ -373,7 +375,7 @@ const WaterConsumption = () => {
               </CardBody>
             </Card>
           </div>
-        </Col>
+        </Col> */}
       </Row>
     </Container>
   );

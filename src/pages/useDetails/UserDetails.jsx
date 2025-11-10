@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
-import { Col, Row } from 'reactstrap';
+import { Col, Label, Row } from 'reactstrap';
 import { useNavigate } from 'react-router-dom';
 import CustomButton from '../Common/button/CustomButton';
 import plus from '../../assets/iotimages/plusIcon.png';
-import deleteicon from '../../assets/iotimages/deleteicon.png';
+import deleteicon from '../../assets/iotimages/delete-pic.png';
 import group from '../../assets/iotimages/userIcon.png';
 import GlobalSearch from '../Common/GlobalSearch';
 import UserCard from '../Common/card/UserCard';
@@ -17,22 +17,22 @@ import AddUser from './AddUser';
 
 const addBTnStyle = {
   background: '#2C67BA',
-  padding: '5px 12px',
+  // padding: '5px 12px',
   borderRadius: '50px',
 };
 const deleteBtnStyle = {
   background: '#F3494C',
-  padding: '5px 12px',
+  // padding: '5px 12px',
   borderRadius: '50px',
 };
 const deviceBTnStyle = {
   background: '#E09110',
-  padding: '5px 5px',
+  // padding: '5px 5px',
   borderRadius: '5px',
 };
 const groupBtnStyle = {
   background: '#293DA1',
-  padding: '5px 5px',
+  // padding: '5px 5px',
   borderRadius: '5px',
 };
 
@@ -128,29 +128,16 @@ const UserDetails = () => {
     <div className='user-details-page'>
       <div className="dashboard-page ">
         <div className="d-flex justify-content-between align-items-center">
-          <div className="page-heading">User Details</div>
-          <div className="select-sec d-flex gap-2">
-            <Select options={options} className="select-field" />
-            <Select options={options} className="select-field" />
-          </div>
-        </div>
-      </div>
-      <div className="mt-4">
-        <Row>
-          <Col md="6">
-            <div className="d-flex gap-2">
-              <Select options={options} className="select-field" />
-              <GlobalSearch />
-            </div>
-          </Col>
-          <Col md="6">
-            <div className="d-flex justify-content-end gap-2">
+          <div className="controller-page-header">Available Users <span>12</span></div>
+          <div>
+              <div className="d-flex justify-content-end gap-2">
               <CustomButton
                 image={plus}
                 label="Add User"
                 color="transparent"
                 style={addBTnStyle}
                 onClick={handleAddUser}
+                className="noBorder"
               />
               <CustomButton
                 image={deleteicon}
@@ -160,7 +147,22 @@ const UserDetails = () => {
                 // onClick={handleAddUser}
               />
             </div>
+          </div>
+        </div>
+      </div>
+      <div className="mt-4">
+        <Row>
+          <Col md="12">
+            <div className="d-flex gap-2 align-items-center">
+              <Select options={options} className="select-field" />
+              <GlobalSearch />
+              <div className='d-flex align-items-center'>
+                <input type='checkbox' />
+                <Label className="ms-2 m-0">Empty User</Label>
+              </div>
+            </div>
           </Col>
+          
         </Row>
       </div>
       <div className="mt-4">

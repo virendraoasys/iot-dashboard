@@ -3,7 +3,7 @@ import Select from 'react-select';
 import { Col, Row } from 'reactstrap';
 import CustomButton from '../Common/button/CustomButton';
 import plus from '../../assets/iotimages/plusIcon.png';
-import deleteicon from '../../assets/iotimages/deleteicon.png';
+import deleteicon from '../../assets/iotimages/delete-pic.png';
 import editicon from "../../assets/iotimages/editIcon.png";
 import GlobalSearch from '../Common/GlobalSearch';
 import UserCard from '../Common/card/UserCard';
@@ -17,22 +17,22 @@ import AddGroup from './AddGroup';
 
 const addBTnStyle = {
   background: '#2C67BA',
-  padding: '5px 12px',
+  // padding: '5px 12px',
   borderRadius: '50px',
 };
 const deleteBtnStyle = {
   background: '#F3494C',
-  padding: '5px 12px',
+  // padding: '5px 12px',
   borderRadius: '50px',
 };
 const deviceBTnStyle = {
   background: '#F94B55',
-  padding: '5px 5px',
+  // padding: '5px 5px',
   borderRadius: '5px',
 };
 const groupBtnStyle = {
   background: '#293DA1',
-  padding: '5px 5px',
+  // padding: '5px 5px',
   borderRadius: '5px',
 };
 
@@ -123,29 +123,16 @@ const Groups = () => {
     <div className='user-description-page'>
       <div className="dashboard-page ">
         <div className="d-flex justify-content-between align-items-center">
-          <div className="page-heading">All Groups</div>
-          <div className="select-sec d-flex gap-2">
-            <Select options={options} className="select-field" />
-            <Select options={options} className="select-field" />
-          </div>
-        </div>
-      </div>
-      <div className="mt-4">
-        <Row>
-          <Col md="6">
-            <div className="d-flex gap-2">
-              <Select options={options} className="select-field" />
-              <GlobalSearch />
-            </div>
-          </Col>
-          <Col md="6">
-            <div className="d-flex justify-content-end gap-2">
+          <div className="controller-page-header">Groups <span>12</span></div>
+          <div>
+              <div className="d-flex justify-content-end gap-2">
               <CustomButton
                 image={plus}
                 label="Add Group"
                 color="transparent"
                 style={addBTnStyle}
-                onClick={handelAddGroup}
+                // onClick={handleAddUser}
+                className="noBorder"
               />
               <CustomButton
                 image={deleteicon}
@@ -155,7 +142,18 @@ const Groups = () => {
                 // onClick={handleAddUser}
               />
             </div>
+          </div>
+        </div>
+      </div>
+      <div className="mt-4">
+        <Row>
+          <Col md="12">
+            <div className="d-flex gap-2">
+              <Select options={options} className="select-field" />
+              <GlobalSearch />
+            </div>
           </Col>
+         
         </Row>
       </div>
       <div className="mt-4">

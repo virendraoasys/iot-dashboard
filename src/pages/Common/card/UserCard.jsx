@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, CardBody, CardHeader } from 'reactstrap';
 
-const UserCard = ({ name, avatar, headerRight, children, headerClass = '', bodyClass = '' }) => {
+const UserCard = ({ noAvatar = false,name, avatar, headerRight, children, headerClass = '', bodyClass = '' }) => {
   return (
-    <Card className="user-card">
+    <Card className="user-card h-100">
       <CardHeader className={`d-flex justify-content-between align-items-center ${headerClass} user-card-header`}>
         {name ?
-           <div className="d-flex align-items-center avatar-sec">
+           <div className={`d-flex align-items-center ${noAvatar ? "": "avatar-sec" }`}>
           {avatar && (
             <img
               src={avatar}
@@ -36,6 +36,7 @@ UserCard.propTypes = {
   children: PropTypes.node,
   headerClass: PropTypes.string,
   bodyClass: PropTypes.string,
+  noAvatar: PropTypes.bool,
 };
 
 export default UserCard;

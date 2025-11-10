@@ -1,7 +1,7 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import SimpleBar from 'simplebar-react';
+// import SimpleBar from 'simplebar-react';
 import {
   Navbar,
   // Nav,
@@ -9,7 +9,7 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem,
+  // DropdownItem,
   Button,
   // Input,
 } from 'reactstrap';
@@ -17,13 +17,13 @@ import {
 import * as Icon from 'react-feather';
 // import MessageDD from './MessageDD';
 // import MegaDD from './MegaDD';
-import NotificationDD from './NotificationDD';
+// import NotificationDD from './NotificationDD';
 import user1 from '../../assets/images/users/user4.jpg';
 
 import { ToggleMiniSidebar, ToggleMobileSidebar } from '../../store/customizer/CustomizerSlice';
 import ProfileDD from './ProfileDD';
 import Logo from '../logo/Logo';
-import SwitchHeader  from '../../components/SwitchHeader';
+// import SwitchHeader  from '../../components/SwitchHeader';
 
 const Header = () => {
   const isDarkMode = useSelector((state) => state.customizer.isDark);
@@ -65,9 +65,9 @@ const Header = () => {
       {/**********Left Nav Bar**********/}
       {/******************************/}
 
-        <div className="d-flex align-items-right ">
+        {/* <div className="d-flex align-items-right ">
           <SwitchHeader />
-        </div>
+        </div> */}
 
         <div className="d-flex align-items-center">
           {/******************************/}
@@ -96,7 +96,7 @@ const Header = () => {
         {/******************************/}
         {/**********Notification DD**********/}
         {/******************************/}
-        <UncontrolledDropdown>
+        {/* <UncontrolledDropdown>
           <DropdownToggle color={topbarColor}>
             <Icon.Bell size={22} />
           </DropdownToggle>
@@ -115,7 +115,7 @@ const Header = () => {
               </Button>
             </div>
           </DropdownMenu>
-        </UncontrolledDropdown>
+        </UncontrolledDropdown> */}
         {/******************************/}
         {/**********Message DD**********/}
         {/******************************/}

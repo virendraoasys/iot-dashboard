@@ -6,7 +6,7 @@ const CustomTabs = ({ tabs, defaultActive = 0 }) => {
   const [activeIndex, setActiveIndex] = useState(defaultActive);
 
   return (
-    <div className="tabs-wrapper">
+    <div className="tabs-wrapper custom-tabs">
       <div className="tabs-container">
         {tabs.map((tab, idx) => (
           <button

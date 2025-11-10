@@ -12,17 +12,18 @@ const CustomButton = ({
   ...rest
 }) => {
   return (
-    <div className={`d-inline-flex align-items-center ${className}`} {...rest}>
+    <div className="" {...rest}>
+      <Button color={color} onClick={onClick} className={`custom-btn-design d-flex gap-2 align-items-center ${className || ""}`}>
       {image && (
         <img
           src={image}
           alt={imgAlt || label}
-          className="me-2"
-          style={{ height: 24, width: 24, objectFit: 'cover' }}
+          className=""
+          style={{ height: "100%", width: "100%" }}
         />
       )}
-      <Button color={color} onClick={onClick} className="" style={{color:"#fff",padding:0}}>
-        {label}
+      
+        {label === "" ? "": label}
       </Button>
     </div>
   );

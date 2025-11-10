@@ -1,121 +1,156 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Formik, Form, ErrorMessage, Field } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-// import Select from 'react-select';
 import { Button, Col, FormGroup, Label, Row } from 'reactstrap';
 import CustomModal from '../Common/modal/CustomModal';
 
 const AddUser = ({ isOpen, toggle }) => {
-  const deviceSchema = Yup.object().shape({
-    deviceName: Yup.string()
+  // ✅ Validation Schema
+  const userSchema = Yup.object().shape({
+    name_of_user: Yup.string()
       .min(3, 'Name must be at least 3 characters')
-      .required('Device name is required'),
-    serialNumber: Yup.string().required('Access type is required'),
-  });
-  //   const deviceName = [{ id: 1, label: 'Phone', value: 'phone' }];
-  return (
-    <>
-      <CustomModal toggle={toggle} isOpen={isOpen} size="lg" title="Add User">
-        <Formik
-          initialValues={{ deviceName: '', serialNumber: '' }}
-          validationSchema={deviceSchema}
-          onSubmit={() => {
-            console.log('submit');
-          }}
-        >
-          {({ isSubmitting }) => (
-            <Form>
-              <Row>
-                <Col md="6" className="pe-3">
-                  <FormGroup>
-                    <Label>
-                      Name <span className="text-danger">*</span>
-                    </Label>
-                    <Field
-                      type="text"
-                      name="user_name"
-                      placeholder="Enter Your User Name"
-                      className="form-control"
-                    />
-                    <ErrorMessage name="user_name" component="div" className="text-danger" />
-                  </FormGroup>
-                </Col>
-                <Col md="6" className="ps-3">
-                  <FormGroup>
-                    <Label>
-                      User Name <span className="text-danger">*</span>
-                    </Label>
-                    <Field
-                      type="text"
-                      name="user_name"
-                      placeholder="Enter Your User Name"
-                      className="form-control"
-                    />
-                    <ErrorMessage name="user_name" component="div" className="text-danger" />
-                  </FormGroup>
-                </Col>
-                <Col md="6" className="pe-3">
-                  <FormGroup>
-                    <Label>
-                      Mobile <span className="text-danger">*</span>
-                    </Label>
-                    <Field
-                      type="text"
-                      name="user_name"
-                      placeholder="Enter Your User Name"
-                      className="form-control"
-                    />
-                    <ErrorMessage name="user_name" component="div" className="text-danger" />
-                  </FormGroup>
-                </Col>
-                <Col md="6" className="ps-3">
-                  <FormGroup>
-                    <Label>
-                      Password <span className="text-danger">*</span>
-                    </Label>
-                    <Field
-                      type="password"
-                      name="user_name"
-                      placeholder="Enter Your User Name"
-                      className="form-control"
-                    />
-                    <ErrorMessage name="user_name" component="div" className="text-danger" />
-                  </FormGroup>
-                </Col>
-                <Col md="6" className="pe-3">
-                  <FormGroup>
-                    <Label>
-                      Email <span className="text-danger">*</span>
-                    </Label>
-                    <Field
-                      type="email"
-                      name="user_name"
-                      placeholder="Enter Your User Name"
-                      className="form-control"
-                    />
-                    <ErrorMessage name="user_name" component="div" className="text-danger" />
-                  </FormGroup>
-                </Col>
-              </Row>
+      .required('Name is required'),
 
-              <div className="d-flex justify-content-end gap-2 mt-3">
-                <Button className="cancel-btn" type="button" onClick={toggle}>
-                  Cancel
-                </Button>
-                <Button className="login-btn" type="submit" disabled={isSubmitting}>
-                  {isSubmitting ? 'Saving...' : 'Save'}
-                </Button>
-              </div>
-            </Form>
-          )}
-        </Formik>
-      </CustomModal>
-    </>
+    user_name: Yup.string()
+      .min(3, 'Username must be at least 3 characters')
+      .required('Username is required'),
+
+    mob_no: Yup.string()
+      .matches(/^[0-9]{10}$/, 'Mobile number must be 10 digits')
+      .required('Mobile number is required'),
+
+    password: Yup.string()
+      .min(6, 'Password must be at least 6 characters')
+      .required('Password is required'),
+
+    email: Yup.string()
+      .email('Invalid email address')
+      .required('Email is required'),
+  });
+  const initialValues={
+          name_of_user: '',
+          user_name: '',
+          mob_no: '',
+          password: '',
+          email: '',
+        }
+
+  return (
+    <CustomModal toggle={toggle} isOpen={isOpen} size="lg" title="Add User">
+      <Formik
+        initialValues={initialValues}
+        enableReinitialize
+        validationSchema={userSchema}
+        onSubmit={(values, { setSubmitting }) => {
+          console.log('Form Submitted:', values);
+          setSubmitting(false);
+          toggle();
+        }}
+      >
+        {({ isSubmitting }) => (
+          <Form>
+            <Row>
+              {/* Name of User */}
+              <Col md="6">
+                <FormGroup>
+                  <Label>
+                    Name of the User <span className="text-danger">*</span>
+                  </Label>
+                  <Field
+                    type="text"
+                    name="name_of_user"
+                    placeholder="Enter your name"
+                    className="form-control"
+                  />
+                  <ErrorMessage name="name_of_user" component="div" className="text-danger" />
+                </FormGroup>
+              </Col>
+
+              {/* Username */}
+              <Col md="6">
+                <FormGroup>
+                  <Label>
+                    Username <span className="text-danger">*</span>
+                  </Label>
+                  <Field
+                    type="text"
+                    name="user_name"
+                    placeholder="Enter your username"
+                    className="form-control"
+                  />
+                  <ErrorMessage name="user_name" component="div" className="text-danger" />
+                </FormGroup>
+              </Col>
+
+              {/* Mobile Number */}
+              <Col md="6">
+                <FormGroup>
+                  <Label>
+                    Mobile Number <span className="text-danger">*</span>
+                  </Label>
+                  <Field
+                    type="text"
+                    name="mob_no"
+                    placeholder="Enter your mobile number"
+                    className="form-control"
+                  />
+                  <ErrorMessage name="mob_no" component="div" className="text-danger" />
+                </FormGroup>
+              </Col>
+
+              {/* Password */}
+              <Col md="6">
+                <FormGroup>
+                  <Label>
+                    Password <span className="text-danger">*</span>
+                  </Label>
+                  <Field
+                    type="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    className="form-control"
+                  />
+                  <ErrorMessage name="password" component="div" className="text-danger" />
+                </FormGroup>
+              </Col>
+
+              {/* Email */}
+              <Col md="6">
+                <FormGroup>
+                  <Label>
+                    Email <span className="text-danger">*</span>
+                  </Label>
+                  <Field
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    className="form-control"
+                  />
+                  <ErrorMessage name="email" component="div" className="text-danger" />
+                </FormGroup>
+              </Col>
+            </Row>
+
+            {/* Buttons */}
+            <div className="d-flex justify-content-end gap-2 mt-3">
+              <Button className="cancel-btn" type="button" onClick={toggle}>
+                Cancel
+              </Button>
+              <Button className="login-btn" type="submit" disabled={isSubmitting}>
+                {isSubmitting ? 'Saving...' : 'Save'}
+              </Button>
+            </div>
+          </Form>
+        )}
+      </Formik>
+    </CustomModal>
   );
 };
+
 AddUser.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   toggle: PropTypes.func.isRequired,
 };
+
 export default AddUser;

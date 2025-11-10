@@ -12,9 +12,12 @@ import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import SimpleBar from 'simplebar-react';
 import SidebarData from '../sidebardata/SidebarData';
-import SideBarBG from "../../../assets/iotimages/SidebarBackground.png"
+// import SideBarBG from "../../../assets/iotimages/SidebarBackground.png"
+import SideBarBG from "../../../assets/iotnewimages/iot-side-img.png"
 // import Logo from '../../logo/Logo';
-import SidebarBrandLogo from '../../logo/SidebarBrandLogo';
+// import SidebarBrandLogo from '../../logo/SidebarBrandLogo';
+import LogoLarge from "../../../assets/iotnewimages/icon-large.png"
+import SmallLogo from "../../../assets/iotnewimages/icon-small.png"
 import { ToggleMobileSidebar } from '../../../store/customizer/CustomizerSlice';
 import NavItemContainer from './NavItemContainer';
 import NavSubMenu from './NavSubMenu';
@@ -33,15 +36,31 @@ const Sidebar = () => {
   const activeBg = useSelector((state) => state.customizer.sidebarBg);
   const isFixed = useSelector((state) => state.customizer.isSidebarFixed);
   const dispatch = useDispatch();
+  const smallSidebar = useSelector((state)=>state.customizer.isMiniSidebar)
+  console.log("smallSidebar=====", smallSidebar);
+  
 
   return (
     <div 
-    style={{backgroundImage: `url(${SideBarBG})`, backgroundSize: 'cover', backgroundPosition: 'center'}}
+    style={{backgroundImage: `url(${SideBarBG})`, backgroundSize: 'cover', backgroundPosition: 'center',}}
     className={`sidebarBox sidebarBGColor shadow  ${isFixed ? 'fixedSidebar' : ''}`}>
       <SimpleBar style={{ height: '100%' }}>
         {/********Logo*******/}
         <div className="d-flex p-3 align-items-center">
-          <SidebarBrandLogo />
+          {/* <LogoLarge /> */}
+          {smallSidebar? 
+          (
+            <div className="d-lg-block d-sm-none small-logo" style={{width:"200px", height:"100%"}}>
+            <img src={SmallLogo} alt='logo' style={{width:"100%", height:"100%"}} />
+          </div>
+          ):(
+             <div className="d-lg-block d-sm-none large-logo" style={{width:"200px", height:"100%"}}>
+            <img src={LogoLarge} alt='logo' style={{width:"100%", height:"100%"}} />
+          </div>
+          )  
+        }
+         
+          
           <Button
             close
             size="sm"
@@ -116,7 +135,8 @@ const Sidebar = () => {
                   title={navi.title}
                   suffix={navi.suffix}
                   suffixColor={navi.suffixColor}
-                  icon={navi.icon}
+                  // icon={navi.icon}
+                  icon={location.pathname === navi.href ? navi.activeIcon : navi.icon}
                 />
               );
             })}

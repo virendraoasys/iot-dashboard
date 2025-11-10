@@ -32,6 +32,7 @@ const ControllerCard = ({
     const [switchState, setSwitchState] = useState(false);
 
     const handleSwitchToggle = (isOn) => {
+        isOn.stopPropagation();
         console.log('Switch toggled:', isOn);
         setSwitchState(isOn);
     };
@@ -54,10 +55,14 @@ const ControllerCard = ({
                             </svg>
                         </span>
                     </div>
-                    <span className="user-name ">{truncateText(userName, 10)}</span>
+                    <span className="user-name ">{truncateText(userName, 90)}</span>
                 </div>
 
-                <div className="status-info">
+                
+            </div>
+            <div className="card-body">
+                <div className=''>
+                    <div className="status-info d-flex justify-content-center gap-4">
                     <div className="battery-info">
                         <span className="battery-icon">
                             <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -68,7 +73,7 @@ const ControllerCard = ({
                     </div>
 
                     <div className="power-status">
-                        <span  className="power-text">{truncateText(powerStatus, 8)}</span>
+                        <span  className="power-text">{truncateText(powerStatus, 10)}</span>
                     </div>
 
                     <ControllerSwitch
@@ -76,19 +81,8 @@ const ControllerCard = ({
                         onToggle={handleSwitchToggle}
                         size="medium"
                     />
-
-                    {/* <div className={`online-status ${isOnline ? 'online' : 'offline'}`}>
-                        <span className="status-text">{isOnline ? 'ON' : 'OFF'}</span>
-                        <div className="status-toggle">
-                            <div className={`toggle-switch ${isOnline ? 'active' : ''}`}></div>
-                        </div>
-                    </div> */}
                 </div>
-            </div>
-
-            {/* card body */}
-            <div className="card-body">
-                {/* Update Times */}
+                </div>
                 <div className="update-times">
                     <div className="last-update">
                         <span className="update-label">Last update</span>

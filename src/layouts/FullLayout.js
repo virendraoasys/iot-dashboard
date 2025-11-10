@@ -48,7 +48,7 @@ const FullLayout = () => {
             </div> */}
           </div>
 
-          <Container fluid className="p-4 boxContainer">
+          <Container fluid className="pt-0 px-0 boxContainer">
             <div>
               <Outlet />
             </div>

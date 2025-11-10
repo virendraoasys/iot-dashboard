@@ -9,10 +9,15 @@ const FullLayout = Loadable(lazy(() => import('../layouts/FullLayout')));
 const BlankLayout = Loadable(lazy(() => import('../layouts/BlankLayout')));
 /***** Pages ****/
 const Dashboard = Loadable(lazy(() => import('../pages/Dashboard/Dashboard')));
-const Controller = Loadable(lazy(() => import('../pages/Controller')));
-const UserDetails = Loadable(lazy(() => import('../pages/useDetails/UserDetails')));
-const Groups = Loadable(lazy(() => import('../pages/groups/Groups')));
-const UserDescription = Loadable(lazy(() => import('../pages/useDetails/UserDescription')));
+// const Controller = Loadable(lazy(() => import('../pages/Controller')));
+const MotorPump = Loadable(lazy(() => import('../pages/motorPump/MotorPump')));
+const AvailableUsers = Loadable(lazy(() => import('../pages/availableUsers/AvailableUsers')));
+// const UserDetails = Loadable(lazy(() => import('../pages/useDetails/UserDetails')));
+// const Groups = Loadable(lazy(() => import('../pages/groups/Groups')));
+const AllGroups = Loadable(lazy(() => import('../pages/allGroups/AllGroups')));
+// const UserDescription = Loadable(lazy(() => import('../pages/useDetails/UserDescription')));
+const NewUserDetails = Loadable(lazy(() => import('../pages/useDetails/NewUserDetails')));
+const MotorPumpDetails = Loadable(lazy(() => import('../pages/motorPump/details/MotorPumpDetails')));
 
 // const Minimal = Loadable(lazy(() => import('../views/dashboards/Minimal')));
 // const Analytical = Loadable(lazy(() => import('../views/dashboards/Analytical')));
@@ -119,10 +124,12 @@ const ThemeRoutes = [
       { path: '/', name: 'Home', element: <Navigate to="/auth/login" /> },
       // { path: '/dashboard', name: 'Dashboard', element: <Navigate to="/dashboard" /> },
       { path: '/dashboard', name: 'dashboard', exact: true, element: <Dashboard /> },
-      { path: '/controller', name:'controller', exact: true, element: <Controller /> },
-      { path: '/user-details', name:'userDetails', exact: true, element: <UserDetails /> },
-      { path: '/user-details/:id', name:'userDescription', exact: true, element: <UserDescription /> },
-      { path: '/groups', name:'groups', exact: true, element: <Groups /> },
+      // { path: '/motor-pump', name:'controller', exact: true, element: <Controller /> },
+      { path: '/motor-pump', name:'controller', exact: true, element: <MotorPump /> },
+      { path: '/available-users', name:'userDetails', exact: true, element: <AvailableUsers /> },
+      { path: '/user-details/:id', name:'userDescription', exact: true, element: <NewUserDetails /> },
+      { path: '/motor-details/:id', name:'motorDescription', exact: true, element: <MotorPumpDetails /> },
+      { path: '/groups', name:'groups', exact: true, element: <AllGroups /> },
       // { path: '/dashboards/minimal', name: 'Minimal', exact: true, element: <Minimal /> },
       // { path: '/dashboards/analytical', name: 'Analytical', exact: true, element: <Analytical /> },
       // { path: '/dashboards/demographical', name: 'Demographical', exact: true, element: <Demographical /> },

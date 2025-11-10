@@ -3,8 +3,12 @@ import ControllerIcon from "../../../assets/iotimages/sidebar_icons/controller_i
 import DashboardIcon from "../../../assets/iotimages/sidebar_icons/dashboard_icon.svg";
 import UserDetailsIcon from "../../../assets/iotimages/sidebar_icons/profile_icon.svg";
 import GroupsIcon from "../../../assets/iotimages/sidebar_icons/groups_icon.svg";
-import ReportsIcon from "../../../assets/iotimages/sidebar_icons/reports_icon.svg";
-import ReportViewIcon from "../../../assets/iotimages/sidebar_icons/report_view_icon.svg";
+import DashActive from "../../../assets/iotnewimages/dash-active.png"
+import ControllerActive from "../../../assets/iotnewimages/Controller-active.png"
+import ProfileActive from "../../../assets/iotnewimages/Profile-active.png"
+import GroupActive from "../../../assets/iotnewimages/Group-active.png"
+// import ReportsIcon from "../../../assets/iotimages/sidebar_icons/reports_icon.svg";
+// import ReportViewIcon from "../../../assets/iotimages/sidebar_icons/report_view_icon.svg";
 
 const SidebarData = [
   // { caption: 'Personal' },
@@ -52,20 +56,23 @@ const SidebarData = [
     title: 'Dashboard',
     href: '/dashboard',
     icon: <img src={DashboardIcon} alt="dashboard" width={16} />,
+    activeIcon: <img src={DashActive} alt="dashboard" width={20} />,
     id: 2.1,
     collapisble: false,
   },
   {
-    title: 'Controller',
-    href: '/controller',
-    icon: <img src={ControllerIcon} alt="controller" width={16} />,
+    title: 'Motor Pump',
+    href: '/motor-pump',
+    icon: <img src={ControllerIcon} alt="motor-pump" width={16} />,
+    activeIcon: <img src={ControllerActive} alt="dashboard" width={20} />,
     id: 2.2,
     collapisble: false,
   },
   {
-    title: 'User Details',
-    href: '/user-details',
+    title: 'Available Users',
+    href: '/available-users',
     icon: <img src={UserDetailsIcon} alt="user details" width={16} />,
+    activeIcon: <img src={ProfileActive} alt="dashboard" width={20} />,
     id: 2.3,
     collapisble: false,
   },
@@ -73,25 +80,26 @@ const SidebarData = [
     title: 'Groups',
     href: '/groups',
     icon: <img src={GroupsIcon} alt="groups" width={16} />,
+    activeIcon: <img src={GroupActive} alt="dashboard" width={20} />,
     id: 2.4,
     collapisble: false,
   },
-  {
-    title: 'Reports',
-    href: '/apps/email',
-    icon: <img src={ReportsIcon} alt="reports" width={16} />,
-    suffix: 'New',
-    suffixColor: 'bg-primary rounded-pill text-dark-white',
-    id: 2.5,
-    collapisble: false,
-  },
-  {
-    title: 'Report View',
-    href: '/casl',
-    icon: <img src={ReportViewIcon} alt="report view" width={16} />,
-    id: 2.6,
-    collapisble: false,
-  },
+  // {
+  //   title: 'Reports',
+  //   href: '/apps/email',
+  //   icon: <img src={ReportsIcon} alt="reports" width={16} />,
+  //   suffix: 'New',
+  //   suffixColor: 'bg-primary rounded-pill text-dark-white',
+  //   id: 2.5,
+  //   collapisble: false,
+  // },
+  // {
+  //   title: 'Report View',
+  //   href: '/casl',
+  //   icon: <img src={ReportViewIcon} alt="report view" width={16} />,
+  //   id: 2.6,
+  //   collapisble: false,
+  // },
   // {
   //   title: 'Ecommerce',
   //   href: '/ecom',

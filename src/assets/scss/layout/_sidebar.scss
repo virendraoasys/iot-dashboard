@@ -55,11 +55,11 @@ $sidebarBGColor: #203B57;
   }
   .activeLink .nav-link {
     opacity: 1;
-    color: $sidebar-text-active-dark-color;
+    color: #2F48A0;
     // border-left: 3px solid $sidebar-text-active-dark-color;
-    border-radius: 25px 25px 25px 25px;
+    border-radius: 8px;
     margin: 15px 5px 5px 15px;
-    background: rgba(255, 255, 255, 0.08); // subtle faded background
+    background: #fff; // subtle faded background
   }
   .subMenu {
     padding: 0;

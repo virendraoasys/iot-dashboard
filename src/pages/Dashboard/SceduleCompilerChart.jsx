@@ -11,8 +11,8 @@ const ScheduleComplianceChart = () => {
       type: "donut",
       height: 300
     },
-    labels: ["Compliant", "Non-Compliant"],
-    colors: ["#00E396", "#FF4560"],
+    labels: ["Healthy (ON)", "Attention Needed (OFF)"],
+    colors: ["#10CF61", "#DC131F"],
     legend: {
       position: "bottom",
       horizontalAlign: "center"
@@ -26,6 +26,7 @@ const ScheduleComplianceChart = () => {
     plotOptions: {
       pie: {
         donut: {
+          size: "55%",
           labels: {
             show: true,
             name: {
@@ -47,7 +48,7 @@ const ScheduleComplianceChart = () => {
             },
             total: {
               show: true,
-              label: "Compliance Rate",
+              label: "Health Rate",
               color: "#373d3f",
               fontSize: "14px",
               formatter() {
@@ -77,13 +78,13 @@ const ScheduleComplianceChart = () => {
     <>
    <Row className="align-items-center mb-3 chart-card">
         <Col md={8} className="chart-card-left-sec">
-          <h5 className="mb-1">Schedule Compliance</h5>
+          <h5 className="mb-1">Motor Health</h5>
           <p className="text-muted mb-0" style={{ fontSize: '0.85rem' }}>
             Monitor pump activity and adherence to schedule
           </p>
         </Col>
         <Col md={4} className="text-end chart-card-right-sec">
-          <div className="btn-group" role="group">
+          {/* <div className="btn-group" role="group">
             <button
               type="button"
               className={`btn btn-sm ${timeRange === 'day' ? 'active' : ''}`}
@@ -105,9 +106,22 @@ const ScheduleComplianceChart = () => {
             >
               Month
             </button>
+          </div> */}
+           <div className="btn-group" role="group">
+            {["day", "week", "month"].map((range) => (
+              <button
+                key={range}
+                type="button"
+                className={`btn btn-sm ${timeRange === range ? "active" : ""}`}
+                onClick={() => setTimeRange(range)}
+              >
+                {range.charAt(0).toUpperCase() + range.slice(1)}
+              </button>
+            ))}
           </div>
         </Col>
       </Row>
+      <hr />
 
       <div style={{ display: "flex", flexWrap: "wrap", gap: "30px" }}>
         {/* Chart Section */}

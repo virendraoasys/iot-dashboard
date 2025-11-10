@@ -3,7 +3,7 @@ import { Card, CardBody } from 'reactstrap';
 import UserCard from '../Common/card/UserCard';
 import CustomButton from '../Common/button/CustomButton';
 import editIcon from '../../assets/iotimages/editIcon.png';
-import deleteIcon from '../../assets/iotimages/deleteicon.png';
+import deleteIcon from '../../assets/iotimages/delete-pic.png';
 
 const deviceBTnStyle = {
   background: '#F94B55',
