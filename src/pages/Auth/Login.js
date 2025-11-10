@@ -4,8 +4,11 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
 // import AuthLogo from "../../layouts/logo/AuthLogo";
-import sideLogo from "../../assets/iotimages/auth-logo.png"
+// import sideLogo from "../../assets/iotimages/auth-logo.png"
 import loginSideImg from "../../assets/iotimages/login-side.png"
+import loginLogo from "../../assets/iotnewimages/iot-logo-login.png"
+import cm from "../../assets/iotnewimages/iot-cm.png";
+import leftArrow from "../../assets/iotnewimages/left-arrow.png"
 // import { ReactComponent as LeftBg } from '../../assets/images/bg/login-bgleft.svg';
 // import { ReactComponent as RightBg } from '../../assets/images/bg/login-bg-right.svg';
 
@@ -30,14 +33,25 @@ const Login = () => {
       <RightBg className="position-absolute end-0 top" /> */}
       <div className='auth-header d-flex justify-content-between align-items-center'>
         <div className='auth-logo'>
-            <img src={sideLogo} alt='Auth-logo' />
+            <img src={loginLogo} alt='Auth-logo' />
         </div>
-        <div className="header-btn ">
+        <div className='auth-logo'>
+            <img src={cm} alt='Auth-logo' />
+        </div>
+        {/* <div className="header-btn ">
             <Button>Back To Website</Button>
-        </div>
+        </div> */}
 
       </div>
       <div fluid className="login-page-container">
+        <div className="header-btn d-flex justify-content-center align-items-center gap-2">
+            <Button>
+              <div className='left-arrow-sec'>
+                <img src={leftArrow} alt='Auth-logo' />
+              </div>
+              Back To Website
+            </Button>
+        </div>
         <Row className="justify-content-center align-items-center login-height h-100">
           <Col lg="4">
             <div className="side-img">
